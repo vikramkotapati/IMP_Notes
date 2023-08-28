@@ -1,0 +1,29 @@
+Worker Node steps:
+
+
+[root@ip-172-31-2-1 ~]# history
+    1  vi /etc/NetworkManager/conf.d/rke2-canal.conf
+    2  systemctl reload NetworkManager
+    3  mkdir -p /etc/rancher/rke2
+    4  vi /etc/rancher/rke2/config.yaml
+    5  cat /etc/rancher/rke2/config.yaml
+    6  curl -sfL https://get.rke2.io | INSTALL_RKE2_TYPE="agent" sh -
+    7  vi /usr/lib/systemd/system/rke2-agent.service
+    8  systemctl daemon-reload
+    9  systemctl enable rke2-agent.service
+   10  systemctl start rke2-agent.service
+   11  systemctl status rke2-agent.service
+   12  journalctl status rke2-agent.service
+   13  journalctl -xeu rke2-agent.service
+   14  telnet 172.31.16.9 9345
+   15  ssh 172.31.16.9
+   16  yum install telnet
+   17  telnet 172.31.16.9 9345
+   18  ip a
+   19  telnet 172.31.16.9 9345
+   20  journalctl stop rke2-agent.service
+   21  systemctl stop rke2-agent.service
+   22  systemctl start rke2-agent.service
+   23  systemctl status rke2-agent.service
+   24  history
+[root@ip-172-31-2-1 ~]#
