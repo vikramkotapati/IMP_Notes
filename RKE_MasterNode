@@ -1,0 +1,61 @@
+    1  pwd
+    2  systemctl status
+    3  systemctl status firewalld
+    4  vi /etc/NetworkManager/conf.d/rke2-canal.conf
+    5  cat /etc/NetworkManager/conf.d/rke2-canal.conf
+    6  mkdir -p /etc/rancher/rke2
+    7  vi /etc/rancher/rke2/config.yaml
+    8  hostname -I
+    9  vi /etc/hosts
+   10  cat /etc/hosts
+   11  curl -sfL https://get.rke2.io | sh -
+   12  systemctl enable rke2-server.service
+   13  systemctl start rke2-server.service
+   14  journalctl -xeu rke2-server.service
+   15  journalctl -xeu rke2-server.service | more
+   16  vi /usr/lib/systemd/system/rke2-server.service
+   17  systemctl stop rke2-server.service
+   18  systemctl daemon-reload
+   19  systemctl start rke2-server.service
+   20  systemctl status rke2-server.service
+
+=============
+pradeep kumar
+11:54 PM
+vi /etc/NetworkManager/conf.d/rke2-canal.conf
+[keyfile]
+unmanaged-devices=interface-name:cali*;interface-name:flannel*
+pradeep kumar
+11:55 PM
+mkdir -p /etc/rancher/rke2
+vi /etc/rancher/rke2/config.yaml
+write-kubeconfig-mode: "0644"
+tls-san:
+  - rke-test-k8s.com
+cni:
+  - "canal"
+cluster-cidr: 172.20.0.0/16
+service-cidr: 172.30.0.0/16
+cluster-dns: 172.30.0.10
+service-node-port-range: 30000-32767
+pradeep kumar
+11:58 PM
+vi /etc/hosts
+172.31.16.9 rke-test-k8s.com
+pradeep kumar
+11:59 PM
+curl -sfL https://get.rke2.io | sh -
+pradeep kumar
+12:01 AM
+systemctl enable rke2-server.service
+systemctl start rke2-server.service
+pradeep kumar
+12:04 AM
+vi /usr/lib/systemd/system/rke2-server.service
+pradeep kumar
+12:05 AM
+systemctl daemon-reload
+pradeep kumar
+12:08 AM
+systemctl daemon-reload
+/etc/rancher/rke2/rke2.yaml
